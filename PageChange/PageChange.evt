@@ -1,0 +1,8 @@
+<aura:event type="APPLICATION">
+    <aura:attribute name="direction" type="String"/>
+    <aura:attribute name="pageSize" type="String" />
+    <aura:attribute name="pageSizeChanged" type="boolean" />
+    
+    <aura:attribute name="isFirstPage" type="boolean" />
+    <aura:attribute name="isLastPage" type="boolean" />
+</aura:event>

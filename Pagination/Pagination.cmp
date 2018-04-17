@@ -1,0 +1,50 @@
+<aura:component >   
+    <aura:attribute name="page" type="integer"/>
+    <aura:attribute name="pages" type="integer"/>
+    <aura:attribute name="total" type="integer"/>
+    <aura:attribute name="ModalPagination" type="Boolean"/>
+    <aura:attribute name="Pagesize" type="String[]" default="5,10,15,20"/>
+    
+    <aura:registerEvent name="pageChange" type="c:PageChange"/>
+    
+    <div class="slds-grid">
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-card__footer slds-text-align_left slds-m-top_none">
+                <span>Showing {!v.page} of {!v.pages} Pages</span>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-card__footer slds-text-align_left slds-m-top_none">
+                <ui:inputSelect aura:id="levels" label="" change="{!c.onSelectChange}">
+                    <aura:iteration items="{!v.Pagesize}" var="level">
+                        <ui:inputSelectOption text="{!level}" label="{!level}"/>
+                    </aura:iteration>
+                </ui:inputSelect>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-card__footer slds-text-align_right slds-m-top_none">
+                <aura:renderIf isTrue="{!v.page != 1}">
+                    <ui:button class="slds-button slds-button--brand"  press="{!c.firstPage}" >
+                        First
+                    </ui:button>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.page > 1}">
+                    <ui:button class="slds-button slds-button--brand"  press="{!c.previousPage}" >
+                        Previous
+                    </ui:button>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.page &lt; v.pages}">
+                    <ui:button class="slds-button slds-button--brand"  press="{!c.nextPage}">
+                        Next
+                    </ui:button>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.page != v.pages}">
+                    <ui:button class="slds-button slds-button--brand"  press="{!c.lastPage}" >
+                        Last
+                    </ui:button>
+                </aura:renderIf>
+            </div>
+        </div>
+    </div>
+</aura:component>
